@@ -1,11 +1,10 @@
-import express from 'express'
+import express from "express"
+import { api } from "@/routes"
 
 const app = express()
 const port = 3080
 
-app.get("/", (req, res) => {
-   res.send('Hello world!')
-})
+app.use("/api", api)
 
 app.listen(port, () => {
    console.log(`Example app listening on port ${port}`)
