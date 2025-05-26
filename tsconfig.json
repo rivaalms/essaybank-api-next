@@ -6,17 +6,21 @@
       "target": "esnext",
       "module": "esnext",
       "resolveJsonModule": true,
-      "moduleResolution": "node",
+      "moduleResolution": "bundler",
       "allowJs": true,
       "esModuleInterop": true,
       "skipLibCheck": true,
       "moduleDetection": "force",
       "strict": true,
       "declaration": true,
+      "isolatedModules": true,
+      "verbatimModuleSyntax": true,
+      "allowSyntheticDefaultImports": true,
+      "types": [],
       "paths": {
          "@/*": ["src/*"],
          "~/*": ["src/*"],
-      }
+      },
    },
    "include": ["./src/**/*.ts"],
    "exclude": ["node_modules"]

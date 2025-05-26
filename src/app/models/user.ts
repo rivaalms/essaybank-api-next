@@ -1,9 +1,16 @@
 import { db } from "@/db/connection"
 import { DataTypes } from "sequelize"
+import type { UserModel } from "@/types/model/user"
 
-const User = db.define(
+const User = db.define<UserModel>(
    "User",
    {
+      id: {
+         type: DataTypes.INTEGER,
+         primaryKey: true,
+         autoIncrement: true,
+         allowNull: false,
+      },
       name: {
          type: DataTypes.STRING,
          allowNull: false,
@@ -26,6 +33,8 @@ const User = db.define(
             notEmpty: true,
          },
       },
+      createdAt: DataTypes.DATE,
+      updatedAt: DataTypes.DATE,
    },
    {
       defaultScope: {

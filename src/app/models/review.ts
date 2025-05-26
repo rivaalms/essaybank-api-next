@@ -1,9 +1,16 @@
 import { db } from "@/db/connection"
 import { DataTypes } from "sequelize"
+import type { ReviewModel } from "@/types/model/review"
 
-const Review = db.define(
+const Review = db.define<ReviewModel>(
    "Review",
    {
+      id: {
+         type: DataTypes.INTEGER,
+         primaryKey: true,
+         autoIncrement: true,
+         allowNull: false,
+      },
       reviewerId: {
          type: DataTypes.INTEGER,
          allowNull: false,
@@ -47,7 +54,9 @@ const Review = db.define(
             const value = this.getDataValue("totalScore")
             return value !== null ? parseFloat(value) : null
          }
-      }
+      },
+      createdAt: DataTypes.DATE,
+      updatedAt: DataTypes.DATE,
    }
 )
 
