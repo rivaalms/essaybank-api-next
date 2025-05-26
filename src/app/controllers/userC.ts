@@ -1,6 +1,7 @@
 import { User } from "@/app/models"
 import { crypt } from "@/app/helpers/crypt"
 import { paginate } from "@/app/helpers/pagination"
+import type { UserCreatePayload, UserUpdatePayload } from "@/types/model/user"
 
 export function userC() {
    async function get(query: any) {
@@ -16,11 +17,11 @@ export function userC() {
       return user
    }
 
-   async function create(payload: any) {
-      const data = {
+   async function create(payload: UserCreatePayload) {
+      const data: UserCreatePayload = {
          name: payload.name,
          email: payload.email,
-         password: await crypt().hash(payload.password)
+         password: await crypt().hash(payload.password),
       }
 
       try {
@@ -32,15 +33,15 @@ export function userC() {
       }
    }
 
-   async function update(id: number, payload: any) {
-      const user = find(id)
+   async function update(id: number, payload: UserUpdatePayload) {
+      const user = await find(id)
       const data = {
          name: payload.name,
-         email: payload.email
+         email: payload.email,
       }
 
       try {
-         const result = (await user).update(data)
+         const result = await user.update(data)
          return result
       } catch (error) {
          console.error("Error updating user:", error)
@@ -64,6 +65,6 @@ export function userC() {
       find,
       create,
       update,
-      destroy
+      destroy,
    }
 }

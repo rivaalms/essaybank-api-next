@@ -17,12 +17,12 @@ export type ReviewAttributes = {
    updatedAt: CreationOptional<Date>
 }
 
-export type ReviewCreationAttributes = Omit<
+export type ReviewModel = Model<
+   InferAttributes<ReviewAttributes>,
+      InferCreationAttributes<ReviewAttributes>
+> & ReviewAttributes
+
+export type ReviewCreatePayload = Omit<
    ReviewAttributes,
    "id" | "createdAt" | "updatedAt"
->
-
-export type ReviewModel = Model<
-   InferAttributes<ReviewAttributes> &
-      InferCreationAttributes<ReviewCreationAttributes>
 >

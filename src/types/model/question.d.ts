@@ -13,12 +13,13 @@ export type QuestionAttributes = {
    updatedAt: CreationOptional<Date>
 }
 
-export type QuestionCreationAttributes = Omit<
+export type QuestionModel = Model<
+   InferAttributes<QuestionAttributes>,
+   InferCreationAttributes<QuestionAttributes>
+> &
+   QuestionAttributes
+
+export type QuestionCreatePayload = Omit<
    QuestionAttributes,
    "id" | "createdAt" | "updatedAt"
->
-
-export type QuestionModel = Model<
-   InferAttributes<QuestionAttributes> &
-      InferCreationAttributes<QuestionCreationAttributes>
 >

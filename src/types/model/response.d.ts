@@ -13,12 +13,13 @@ export type ResponseAttributes = {
    updatedAt: CreationOptional<Date>
 }
 
-export type ResponseCreationAttributes = Omit<
+export type ResponseModel = Model<
+   InferAttributes<ResponseAttributes>,
+   InferCreationAttributes<ResponseAttributes>
+> &
+   ResponseAttributes
+
+export type ResponseCreatePayload = Omit<
    ResponseAttributes,
    "id" | "createdAt" | "updatedAt"
->
-
-export type ResponseModel = Model<
-   InferAttributes<ResponseAttributes> &
-      InferCreationAttributes<ResponseCreationAttributes>
 >

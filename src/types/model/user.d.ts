@@ -14,12 +14,15 @@ export type UserAttributes = {
    updatedAt: CreationOptional<Date>
 }
 
-export type UserCreationAttributes = Omit<
+export type UserModel = Model<
+   InferAttributes<UserAttributes>,
+   InferCreationAttributes<UserAttributes>
+> &
+   UserAttributes
+
+export type UserCreatePayload = Omit<
    UserAttributes,
    "id" | "createdAt" | "updatedAt"
 >
 
-export type UserModel = Model<
-   InferAttributes<UserAttributes> &
-      InferCreationAttributes<UserCreationAttributes>
->
+export type UserUpdatePayload = Omit<UserCreatePayload, "password">
