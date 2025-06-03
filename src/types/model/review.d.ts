@@ -12,7 +12,7 @@ export type ReviewAttributes = {
    relevanceScore: string
    languageScore: string
    spellingScore: string
-   totalScore: string
+   totalScore: CreationOptional<string>
    createdAt: CreationOptional<Date>
    updatedAt: CreationOptional<Date>
 }

@@ -5,7 +5,7 @@ import { Review } from "./review"
 
 // SECTION: Relationships
 User.hasMany(Review, {
-   foreignKey: "reviewrId",
+   foreignKey: "reviewerId",
 })
 
 Response.belongsTo(Question, {
