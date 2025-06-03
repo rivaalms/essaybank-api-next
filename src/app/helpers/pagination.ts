@@ -1,6 +1,6 @@
-import { ModelCtor, Model } from "sequelize"
+import { type ModelStatic, Model } from "sequelize"
 export async function paginate<T extends Model>(
-   model: ModelCtor<T>,
+   model: ModelStatic<T>,
    page: number = 1,
    perPage: number = 10
 ) {
