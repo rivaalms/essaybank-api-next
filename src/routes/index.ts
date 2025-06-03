@@ -1,4 +1,6 @@
 import express, { Router } from "express"
+import { auth as authMiddleware } from "./middlewares/auth"
+import { authRouter } from "./api/auth"
 import { usersRouter } from "./api/users"
 import { questionsRouter } from "./api/questions"
 import { responsesRouter } from "./api/responses"
@@ -15,6 +17,8 @@ router.use((req, res, next) => {
    next()
 })
 
+router.use("/auth", authRouter)
+router.use(authMiddleware)
 router.use("/users", usersRouter)
 router.use("/questions", questionsRouter)
 router.use("/responses", responsesRouter)

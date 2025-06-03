@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt"
+import crypto from "crypto"
 
 export function crypt() {
    async function hash(password: string) {
@@ -11,8 +12,13 @@ export function crypt() {
       return await bcrypt.compare(password, hash)
    }
 
+   async function generateToken(bytes: number = 32) {
+      return crypto.randomBytes(bytes).toString('hex')
+   }
+
    return {
       hash,
-      compare
+      compare,
+      generateToken
    }
 }

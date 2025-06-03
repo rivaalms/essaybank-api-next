@@ -2,10 +2,19 @@ import { User } from "./user"
 import { Question } from "./question"
 import { Response } from "./response"
 import { Review } from "./review"
+import { UserToken } from "./user-token"
 
 // SECTION: Relationships
 User.hasMany(Review, {
    foreignKey: "reviewerId",
+})
+
+User.hasOne(UserToken, {
+   foreignKey: "userId"
+})
+
+UserToken.belongsTo(User, {
+   foreignKey: "userId"
 })
 
 Response.belongsTo(Question, {
@@ -28,4 +37,4 @@ Review.belongsTo(Response, {
 })
 // !SECTION
 
-export { User, Question, Response, Review }
+export { User, Question, Response, Review, UserToken }
